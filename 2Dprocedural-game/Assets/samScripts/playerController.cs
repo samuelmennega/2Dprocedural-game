@@ -82,11 +82,19 @@ public class playerController : MonoBehaviour
 
     void PullBack()
     {
-        if(Vector3.Distance(launchPoint.position, (camera.ScreenToWorldPoint(Input.mousePosition))) >= pullDistance) {
-            transform.position = Vector3.Lerp()
+        float mouseDist = (Vector3.Distance(launchPoint.position, (camera.ScreenToWorldPoint(Input.mousePosition))));
+        if (mouseDist >= pullDistance) 
+        {
+            transform.position = Vector3.Lerp(launchPoint.position, camera.ScreenToWorldPoint(Input.mousePosition),(pullDistance/mouseDist));
         }
-       // rb.Sleep();
-       // transform.position = launchPoint.position + (camera.ScreenToWorldPoint(Input.mousePosition) - MousePosInitial);
+
+        else
+        {
+            transform.position = launchPoint.position + (camera.ScreenToWorldPoint(Input.mousePosition) - MousePosInitial);
+
+        }
+        // rb.Sleep();
+        // transform.position = launchPoint.position + (camera.ScreenToWorldPoint(Input.mousePosition) - MousePosInitial);
     }
 
     void Launching()

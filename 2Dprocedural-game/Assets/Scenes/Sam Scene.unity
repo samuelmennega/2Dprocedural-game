@@ -349,7 +349,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
@@ -437,10 +437,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a499b07afbd72514fa54d7bdf9649311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchSpeed: 75
+  launchSpeed: 100
   myState: 0
   currentScore: 0
   launchPoint: {fileID: 1244085378}
+  pullDistance: 5
   camera: {fileID: 1718733030}
 --- !u!1 &1209843799
 GameObject:
