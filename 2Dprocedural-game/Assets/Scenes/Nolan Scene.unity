@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &67811979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 67811980}
+  m_Layer: 0
+  m_Name: launchpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &67811980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67811979}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -31.288544, y: -42.731304, z: -0.07240101}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &197012013
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a679240b866c42438018044ec01043d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -900
 --- !u!61 &371992211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -534,7 +564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a679240b866c42438018044ec01043d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -1000
 --- !u!1 &1277149329
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,48 +573,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277149331}
-  - component: {fileID: 1277149330}
+  - component: {fileID: 1277149332}
+  - component: {fileID: 1277149333}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1277149330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277149329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcca12a9adb61324fab128e61fbff374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 5.47, y: 8.55, z: 0}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _detectorCount: 3
-  _detectionRayLength: 1.15
-  _rayBuffer: 0.2062
-  _acceleration: 250
-  _moveClamp: 100
-  _deAcceleration: 150
-  _apexBonus: 10
-  _fallClamp: -150
-  _minFallSpeed: 120
-  _maxFallSpeed: 200
-  _jumpHeight: 150
-  _jumpApexThreshold: 100
-  _coyoteTimeThreshold: 0.1
-  _jumpBuffer: 0.1
-  _jumpEndEarlyGravityModifier: 3
-  _freeColliderIterations: 10
 --- !u!4 &1277149331
 Transform:
   m_ObjectHideFlags: 0
@@ -602,3 +598,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1277149332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277149329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcca12a9adb61324fab128e61fbff374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 5.5, y: 8.5, z: 0}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _detectorCount: 3
+  _detectionRayLength: 0.1
+  _rayBuffer: 0.1
+  _acceleration: 200
+  _moveClamp: 13
+  _deAcceleration: 60
+  _apexBonus: 2
+  _fallClamp: -80
+  _minFallSpeed: 80
+  _maxFallSpeed: 300
+  _jumpHeight: 150
+  _jumpApexThreshold: 10
+  _coyoteTimeThreshold: 0.1
+  _jumpBuffer: 0.1
+  _jumpEndEarlyGravityModifier: 3
+  _freeColliderIterations: 10
+--- !u!114 &1277149333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277149329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b82a5fc105cc09448e704d2c346c580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  launchSpeed: 50
+  myState: 0
+  launchPoint: {fileID: 67811980}
+  pullDistance: 50
+  decelerationTime: 20
+  camera: {fileID: 197012015}
+  mapObjects:
+  - {fileID: 371992209}
+  - {fileID: 1007010048}

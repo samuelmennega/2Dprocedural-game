@@ -15,7 +15,7 @@ public class cameraController : MonoBehaviour
 
 
     private Vector3 playerPosition;
-    private playerController player;
+    private launchController player;
     private Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
@@ -28,9 +28,9 @@ public class cameraController : MonoBehaviour
     void LateUpdate()
     {
         playerPosition = playerObject.transform.position;
-        player = playerObject.GetComponent<playerController>();
+        player = playerObject.GetComponent<launchController>();
 
-        if(player.myState == playerController.playerState.Idle || player.myState == playerController.playerState.PullBack)
+        if(player.myState == launchController.playerState.Idle || player.myState == launchController.playerState.PullBack)
         {
             gameObject.transform.position = launchPos.position + launchOffset;
         }

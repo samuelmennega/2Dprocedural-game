@@ -8,7 +8,7 @@ public class waterController : MonoBehaviour
     private BoxCollider2D bc;
     public GameObject playerObject;
     private Rigidbody2D playerRB;
-    private playerController player;
+    private launchController player;
     private float initialDrag;
     private float initialGravity;
     // Start is called before the first frame update
@@ -16,7 +16,7 @@ public class waterController : MonoBehaviour
     {
         bc = GetComponent<BoxCollider2D>();
         playerRB = playerObject.GetComponent<Rigidbody2D>();
-        player = playerObject.GetComponent<playerController>();
+        player = playerObject.GetComponent<launchController>();
         initialDrag = playerRB.drag;
         initialGravity = playerRB.gravityScale;
 
@@ -34,7 +34,7 @@ public class waterController : MonoBehaviour
         if (collision.tag == "Player")
         {
           
-            player.myState = playerController.playerState.Landed;
+            player.myState = launchController.playerState.Landed;
             playerRB.drag = 10;
             playerRB.gravityScale = 0;
 
@@ -45,7 +45,7 @@ public class waterController : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            player = collision.GetComponent<playerController>();
+            player = collision.GetComponent<launchController>();
             playerRB = collision.GetComponent<Rigidbody2D>();
             playerRB.drag = initialDrag;
             playerRB.gravityScale = initialGravity;
