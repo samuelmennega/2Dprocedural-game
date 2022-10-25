@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour
     public playerState myState = playerState.Idle;
     public float currentScore;
     public Transform launchPoint;
+    public float pullDistance;
 
 
 
@@ -81,8 +82,11 @@ public class playerController : MonoBehaviour
 
     void PullBack()
     {
-        rb.Sleep();
-        transform.position = launchPoint.position + (camera.ScreenToWorldPoint(Input.mousePosition) - MousePosInitial);
+        if(Vector3.Distance(launchPoint.position, (camera.ScreenToWorldPoint(Input.mousePosition))) >= pullDistance) {
+
+        }
+       // rb.Sleep();
+       // transform.position = launchPoint.position + (camera.ScreenToWorldPoint(Input.mousePosition) - MousePosInitial);
     }
 
     void Launching()
