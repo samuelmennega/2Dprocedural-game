@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class launchController : MonoBehaviour
 {
+
     [Header("Launch Attributes")]
     public int launchSpeed;
     public playerState myState = playerState.Idle;
-    public float currentScore;
     public Transform launchPoint;
     public float pullDistance;
+    public float decelerationTime;
 
 
 
     [Header("scene attributes")]
     public new Camera camera;
+    public GameObject[] mapObjects;
 
 
-    private Rigidbody2D rb;
+   
     private Vector3 MousePosInitial;
 
+    private TarodevController.PlayerController pc;
+    
     private void Awake()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        rb.Sleep();
-
+        pc = gameObject.GetComponent<TarodevController.PlayerController>();
+        pc.enabled = false;
     }
 
 
@@ -33,24 +36,24 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             MousePosInitial = camera.ScreenToWorldPoint(Input.mousePosition);
-            if(myState == playerState.Idle)
+            if (myState == playerState.Idle)
             {
                 myState = playerState.PullBack;
             }
         }
 
-        if(Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
-            if(myState == playerState.PullBack)
+            if (myState == playerState.PullBack)
             {
                 myState = playerState.Launching;
             }
         }
 
-        switch(myState)
+        switch (myState)
         {
             case playerState.Idle:
                 Idle();
@@ -65,51 +68,76 @@ public class playerController : MonoBehaviour
                 break;
 
             case playerState.InAir:
-                currentScore = InAir();
                 break;
 
             case playerState.Landed:
-            //    Landed();
+                Landed();
                 break;
         }
     }
 
     void Idle()
     {
-        rb.Sleep();
+        pc.enabled = false;
+
         transform.position = launchPoint.position;
     }
 
     void PullBack()
     {
-        float mouseDist = (Vector3.Distance(launchPoint.position, (camera.ScreenToWorldPoint(Input.mousePosition))));
-        if (mouseDist >= pullDistance) 
+        pc.enabled = false;
+        
+        
+        Vector3 pullDirection = camera.ScreenToWorldPoint(Input.mousePosition) - MousePosInitial;
+        float pullMagnitude = pullDirection.magnitude;
+
+        if (pullDirection.x >= 0)
         {
-            transform.position = Vector3.Lerp(launchPoint.position, camera.ScreenToWorldPoint(Input.mousePosition),(pullDistance/mouseDist));
+            pullDirection.x = 0;
+        }
+
+        if (pullMagnitude >= pullDistance)
+        {
+            transform.position = Vector3.Lerp(launchPoint.position, launchPoint.position + pullDirection, pullDistance/pullMagnitude);
         }
 
         else
         {
-            transform.position = launchPoint.position + (camera.ScreenToWorldPoint(Input.mousePosition) - MousePosInitial);
+            transform.position = Vector3.Lerp(launchPoint.position, launchPoint.position + pullDirection, 1);
+
+            //transform.position = launchPoint.position + (camera.ScreenToWorldPoint(Input.mousePosition) - MousePosInitial);
 
         }
+
+       
         // rb.Sleep();
         // transform.position = launchPoint.position + (camera.ScreenToWorldPoint(Input.mousePosition) - MousePosInitial);
     }
 
     void Launching()
     {
-        float distance = Vector3.Distance(rb.position, launchPoint.position);
-        Vector3 pos = rb.position;
+        float distance = Vector3.Distance(transform.position, launchPoint.position);
+        Vector3 pos = transform.position;
         Vector3 launchDirection = launchPoint.position - pos;
-        rb.WakeUp();
-        rb.AddForce(launchDirection*launchSpeed, ForceMode2D.Impulse);
+        
+        //rb.AddForce(new Vector2(0f, launchDirection.y) * launchSpeed, ForceMode2D.Impulse);
+        foreach (GameObject map in mapObjects) {
+            map.GetComponent<backgroundMovement>().Launch(launchDirection.x * launchSpeed, decelerationTime);
+        }
+
+        pc.enabled = true;
+        pc.AddToSpeed(0, launchDirection.y * launchSpeed);
         myState = playerState.InAir;
     }
 
     float InAir()
     {
         return transform.position.x - launchPoint.position.x;
+    }
+
+    void Landed()
+    {
+        pc.enabled = false;
     }
     public enum playerState
     {
@@ -119,5 +147,5 @@ public class playerController : MonoBehaviour
         InAir,
         Landed
     }
-}
 
+}
