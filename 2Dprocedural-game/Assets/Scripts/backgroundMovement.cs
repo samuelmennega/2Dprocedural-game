@@ -6,26 +6,30 @@ public class backgroundMovement : MonoBehaviour
 {
   
 
+   [HideInInspector]
+    public float scrollSpeedInitial, repeatWidth, repeatHeight, decel, scrollSpeed;
+
     [HideInInspector]
-    public float scrollSpeedInitial, repeatWidth, repeatHeight, decel, scrollSpeed, startTime;
-    [HideInInspector]
-    public bool launch = false, first = true;
+    public bool launch = false;
 
 
 
 
 
-    // Start is called before the first frame update
-    void Awake()
+
+    public void Initialize(float scrollSpeedInit, float decelInit)
+    {
+        scrollSpeedInitial = scrollSpeedInit;
+        decel = decelInit;
+        
+           
+    }
+
+    public void Awake()
     {
         repeatWidth = gameObject.GetComponent<SpriteRenderer>().size.x;
         repeatHeight = gameObject.GetComponent<SpriteRenderer>().size.y;
-        if (first)
-        {
-           //Instantiate(gameObject, new Vector3(transform.position.x + repeatWidth, transform.position.y, transform.position.z), Quaternion.identity);
-            first = false;
-        }
-        startTime = Time.time;
+
     }
 
     // Update is called once per frame
@@ -47,7 +51,7 @@ public class backgroundMovement : MonoBehaviour
 
         if(transform.position.x < -repeatWidth)
         {
-            //Instantiate(gameObject, new Vector3(transform.position.x + repeatWidth * 2, transform.position.y, transform.position.z), Quaternion.identity);
+            GameObject newObject = Instantiate(gameObject, new Vector3(transform.position.x + repeatWidth * 2, transform.position.y, transform.position.z), Quaternion.identity);
             GameObject.Destroy(gameObject);
         }
        
