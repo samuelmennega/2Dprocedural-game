@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class backgroundMovement : MonoBehaviour
 {
-    private float scrollSpeedInitial;
-    private float decel;
-    private float scrollSpeed = 100;
-    private float startTime;
-    private bool launch = false;
+  
+
+    [HideInInspector]
+    public float scrollSpeedInitial, repeatWidth, repeatHeight, decel, scrollSpeed, startTime;
+    [HideInInspector]
+    public bool launch = false, first = true;
+
+
+
+
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        repeatWidth = gameObject.GetComponent<SpriteRenderer>().size.x;
+        repeatHeight = gameObject.GetComponent<SpriteRenderer>().size.y;
+        if (first)
+        {
+           //Instantiate(gameObject, new Vector3(transform.position.x + repeatWidth, transform.position.y, transform.position.z), Quaternion.identity);
+            first = false;
+        }
         startTime = Time.time;
     }
 
@@ -23,6 +36,7 @@ public class backgroundMovement : MonoBehaviour
             return;
         }
 
+
         if(scrollSpeed >= 0) {
 
             launch = false;
@@ -31,10 +45,12 @@ public class backgroundMovement : MonoBehaviour
 
         transform.position = new Vector2(transform.position.x + scrollSpeed * Time.deltaTime, transform.position.y);
 
-        if(transform.position.x < -192f)
+        if(transform.position.x < -repeatWidth)
         {
-            transform.position = new Vector2(320f, transform.position.y);
+            //Instantiate(gameObject, new Vector3(transform.position.x + repeatWidth * 2, transform.position.y, transform.position.z), Quaternion.identity);
+            GameObject.Destroy(gameObject);
         }
+       
     }
 
     public void Launch(float speed,float decelerationTime)
@@ -43,6 +59,8 @@ public class backgroundMovement : MonoBehaviour
         decel = speed / decelerationTime;
         launch = true;
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
