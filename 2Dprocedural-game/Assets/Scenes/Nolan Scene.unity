@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 197012016}
   - component: {fileID: 197012015}
   - component: {fileID: 197012014}
+  - component: {fileID: 197012017}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -231,13 +232,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197012013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &197012017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197012013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e8b277f6ce86640a3437f352dff8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothSpeed: 1
+  offset: {x: 0, y: 0, z: -10}
+  bounds: 1
+  minCameraPos: {x: 0, y: -1, z: -10}
+  maxCameraPos: {x: 0, y: 500, z: -10}
 --- !u!1 &207191303
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +549,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 518.0486, y: 192.83514}
+  m_Size: {x: 925.97876, y: 809.8752}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -545,7 +563,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007010048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 223.2, y: 40.7449, z: 0}
+  m_LocalPosition: {x: 631.1302, y: 707.1482, z: 0}
   m_LocalScale: {x: 2, y: 2.16, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -621,12 +639,12 @@ MonoBehaviour:
   _detectionRayLength: 0.1
   _rayBuffer: 0.1
   _acceleration: 200
-  _moveClamp: 13
-  _deAcceleration: 60
+  _moveClamp: 100
+  _deAcceleration: 200
   _apexBonus: 2
-  _fallClamp: -200
+  _fallClamp: -400
   _minFallSpeed: 150
-  _maxFallSpeed: 300
+  _maxFallSpeed: 500
   _jumpHeight: 150
   _jumpApexThreshold: 10
   _coyoteTimeThreshold: 0.1
@@ -645,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b82a5fc105cc09448e704d2c346c580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchSpeed: 25
+  launchSpeed: 15
   myState: 0
   launchPoint: {fileID: 67811980}
   pullDistance: 50
@@ -671,6 +689,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
+  _playerGrounded: 0
 --- !u!1 &1607740097
 GameObject:
   m_ObjectHideFlags: 0
