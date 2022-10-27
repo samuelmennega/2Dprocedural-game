@@ -16,7 +16,8 @@ public class launchController : MonoBehaviour
 
     [Header("scene attributes")]
     public new Camera camera;
-    public GameObject[] mapObjects;
+    public GameObject mapManager;
+    private mapGenerator mapGen;
 
 
    
@@ -26,8 +27,10 @@ public class launchController : MonoBehaviour
     
     private void Awake()
     {
+
         pc = gameObject.GetComponent<TarodevController.PlayerController>();
         pc.enabled = false;
+        mapGen = mapManager.GetComponent<mapGenerator>();
     }
 
 
@@ -119,11 +122,11 @@ public class launchController : MonoBehaviour
         float distance = Vector3.Distance(transform.position, launchPoint.position);
         Vector3 pos = transform.position;
         Vector3 launchDirection = launchPoint.position - pos;
-        
+
         //rb.AddForce(new Vector2(0f, launchDirection.y) * launchSpeed, ForceMode2D.Impulse);
-        foreach (GameObject map in mapObjects) {
-            map.GetComponent<backgroundMovement>().Launch(launchDirection.x * launchSpeed, decelerationTime);
-        }
+
+        mapGen.Launch(launchSpeed,launchDirection,decelerationTime);
+         
 
         pc.enabled = true;
         pc.AddToSpeed(0, launchDirection.y * launchSpeed);

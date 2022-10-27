@@ -12,21 +12,32 @@ public class mapGenerator : MonoBehaviour
     public float decel;
     private float backgroundWidth;
     private float groundWidth;
+    private GameObject[] launchObjects = new GameObject[4];
 
 
 
     private void Awake()
     {
-        GameObject newBackground = Instantiate(biomes[0].background, startingBackgroundLoc, Quaternion.identity);
-        GameObject newGround = Instantiate(biomes[0].ground, startingGroundLoc, Quaternion.identity);
-        newBackground.GetComponent<backgroundMovement>().Initialize(scrollSpeedInitial, decel);
-        newGround.GetComponent<backgroundMovement>().Initialize(scrollSpeedInitial, decel);
+        int i = 0;
+        GameObject newBackground = launchObjects[i++]= Instantiate(biomes[0].background, startingBackgroundLoc, Quaternion.identity);
+        GameObject newGround = launchObjects[i++] = Instantiate(biomes[0].ground, startingGroundLoc, Quaternion.identity);
+       
         backgroundWidth = newBackground.GetComponent<backgroundMovement>().repeatWidth;
         groundWidth = newGround.GetComponent<backgroundMovement>().repeatWidth;
 
 
-        Instantiate(biomes[0].ground, (startingGroundLoc + Vector2.right * backgroundWidth), Quaternion.identity).GetComponent<backgroundMovement>().Initialize(scrollSpeedInitial, decel);
-        Instantiate(biomes[0].background, (startingBackgroundLoc + Vector2.right * backgroundWidth), Quaternion.identity).GetComponent<backgroundMovement>().Initialize(scrollSpeedInitial, decel);
+        launchObjects[i++] = Instantiate(biomes[0].ground, (startingGroundLoc + Vector2.right * backgroundWidth), Quaternion.identity);
+        launchObjects[i++] = Instantiate(biomes[0].background, (startingBackgroundLoc + Vector2.right * backgroundWidth), Quaternion.identity);
+
+    }
+
+    public void Launch(float launchSpeed, Vector2 launchDirection, float decelerationTime)
+    {
+        foreach(GameObject launchObject in launchObjects) {
+
+            launchObject.GetComponent<backgroundMovement>().Launch(launchDirection.x * launchSpeed, decelerationTime);
+
+        }
 
     }
 

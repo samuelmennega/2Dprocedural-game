@@ -401,11 +401,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4314454227181856618, guid: 0bbf4ea20b4d04f46a893efa80808aab, type: 3}
   m_PrefabInstance: {fileID: 4314454226948801019}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1007010048 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2266275315296250885, guid: d022d8eb0afe5cc428986c7b4d1d04ca, type: 3}
-  m_PrefabInstance: {fileID: 2266275315497954565}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1277149329
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,9 +487,7 @@ MonoBehaviour:
   pullDistance: 50
   decelerationTime: 20
   camera: {fileID: 197012015}
-  mapObjects:
-  - {fileID: 371992209}
-  - {fileID: 1007010048}
+  mapManager: {fileID: 2016516830}
 --- !u!1 &2016516830
 GameObject:
   m_ObjectHideFlags: 0

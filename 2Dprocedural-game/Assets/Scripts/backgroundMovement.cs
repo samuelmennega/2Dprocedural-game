@@ -7,7 +7,7 @@ public class backgroundMovement : MonoBehaviour
   
 
    [HideInInspector]
-    public float scrollSpeedInitial, repeatWidth, repeatHeight, decel, scrollSpeed;
+    public float repeatWidth, repeatHeight, decel, scrollSpeed;
 
     [HideInInspector]
     public bool launch = false;
@@ -17,13 +17,7 @@ public class backgroundMovement : MonoBehaviour
 
 
 
-    public void Initialize(float scrollSpeedInit, float decelInit)
-    {
-        scrollSpeedInitial = scrollSpeedInit;
-        decel = decelInit;
-        
-           
-    }
+
 
     public void Awake()
     {
