@@ -669,10 +669,14 @@ MonoBehaviour:
   pullDistance: 50
   decelerationTime: 10
   camera: {fileID: 197012015}
+<<<<<<< Updated upstream
   mapObjects:
   - {fileID: 371992209}
   - {fileID: 1007010048}
   - {fileID: 1607740097}
+=======
+  mapManager: {fileID: 2016516830}
+>>>>>>> Stashed changes
 --- !u!114 &1277149334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,7 +694,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _playerGrounded: 0
+<<<<<<< Updated upstream
 --- !u!1 &1607740097
+=======
+--- !u!1 &2016516830
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
