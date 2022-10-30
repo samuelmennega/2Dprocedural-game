@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 197012016}
   - component: {fileID: 197012015}
   - component: {fileID: 197012014}
+  - component: {fileID: 197012017}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -291,6 +292,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &197012017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197012013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7e81b22ebc735429899799a97ade3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 0, z: -20}
+  bounds: 0
+  minCameraPos: {x: 0, y: 0, z: 0}
+  maxCameraPos: {x: 0, y: 0, z: 0}
 --- !u!1 &207191303
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +456,7 @@ GameObject:
   - component: {fileID: 1277149331}
   - component: {fileID: 1277149332}
   - component: {fileID: 1277149333}
+  - component: {fileID: 1277149334}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -514,6 +533,23 @@ MonoBehaviour:
   decelerationTime: 20
   camera: {fileID: 197012015}
   mapManager: {fileID: 2016516830}
+--- !u!114 &1277149334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277149329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba9064bea8b7a14da328d78e9472d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 207191306}
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _playerGrounded: 0
 --- !u!1 &2016516830
 GameObject:
   m_ObjectHideFlags: 0
