@@ -135,6 +135,8 @@ public class launchController : MonoBehaviour
 
     float InAir()
     {
+        
+       
         return transform.position.x - launchPoint.position.x;
     }
 

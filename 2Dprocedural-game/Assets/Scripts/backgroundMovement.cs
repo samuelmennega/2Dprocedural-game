@@ -62,7 +62,7 @@ public class backgroundMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player" || scrollSpeed >= 0)
+        if(collision.tag == "Player" && scrollSpeed >= 0)
         {
             collision.GetComponent<launchController>().myState = launchController.playerState.Landed;
         }
