@@ -36,13 +36,11 @@ public class backgroundMovement : MonoBehaviour
 
 
 
-        //scrollSpeed += decel * Time.deltaTime;
 
-        transform.position = new Vector2(transform.position.x + mapGenerator.deltaMovement, transform.position.y);
 
         if(transform.position.x < -repeatWidth)
         {
-            GameObject newObject = Instantiate(gameObject, new Vector3(transform.position.x + repeatWidth * 2, transform.position.y, transform.position.z), Quaternion.identity);
+            Instantiate(gameObject, new Vector3(transform.position.x + repeatWidth * 2, transform.position.y, transform.position.z), Quaternion.identity).transform.SetParent(transform.parent);
             GameObject.Destroy(gameObject);
         }
        

@@ -24,7 +24,7 @@ public class cameraFollower : MonoBehaviour
     void LateUpdate()
     {
         target = GameObject.FindWithTag("Player").transform;
-        if (target == null)
+        if (target == null || !mapGenerator.launch)
             return;
 
         Vector3 desiredPosition = target.position + offset;
