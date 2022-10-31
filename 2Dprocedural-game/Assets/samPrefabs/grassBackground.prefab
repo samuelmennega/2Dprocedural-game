@@ -97,8 +97,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a679240b866c42438018044ec01043d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repeatWidth: 0
-  repeatHeight: 0
-  decel: 0
-  scrollSpeed: 0
-  launch: 0

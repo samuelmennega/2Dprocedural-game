@@ -31,7 +31,7 @@ namespace TarodevController {
         void Activate() =>  _active = true;
 
         private void Update() {
-            if (!_active) return;
+            if (!_active || !mapGenerator.launch) return;
             // Calculate velocity
             Velocity = (transform.position - _lastPosition) / Time.deltaTime;
             _lastPosition = transform.position;

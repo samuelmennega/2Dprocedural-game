@@ -25,6 +25,8 @@ public class mapGenerator : MonoBehaviour
     private float backgroundWidth;
     private float groundWidth;
     private static GameObject[] launchObjects = new GameObject[4];
+    //private static List<GameObject> activeChunks = new List<GameObject>();
+    private static List<GameObject> inactiveChunks = new List<GameObject>();
     public static float scrollSpeed;
     public static float deltaMovement;
     public static bool launch = false;
@@ -39,22 +41,24 @@ public class mapGenerator : MonoBehaviour
         startingGroundLoc = set_startingGroundLoc;
 
         //instantiate chunks
-        int numChunks = (mapLength / chunkSize) + 1;
-        for(int i = 0; i <= numChunks; i++)
+        int numChunks = (mapLength / chunkSize);
+
+        for (int i = 0; i <= numChunks; i++)
         {
-            Instantiate(chunkPrefab, new Vector3(startingBackgroundLoc.x, startingBackgroundLoc.y, 0) + transform.right * chunkSize * i, Quaternion.identity);
+            GameObject chunk = Instantiate(chunkPrefab, new Vector3(startingBackgroundLoc.x, startingBackgroundLoc.y, 0) + transform.right * chunkSize * i, Quaternion.identity);
+            chunk.transform.SetParent(mapMover);
+            inactiveChunks.Add(chunk);
         }
+
         //initialize background and ground
-        int index = 0;
-        GameObject newBackground = launchObjects[index++]= Instantiate(biomes[0].background, startingBackgroundLoc, Quaternion.identity);
-        GameObject newGround = launchObjects[index++] = Instantiate(biomes[0].ground, startingGroundLoc, Quaternion.identity);
-       
+        Instantiate(biomes[0].background, startingBackgroundLoc, Quaternion.identity).transform.SetParent(mapMover);
+        Instantiate(biomes[0].ground, startingGroundLoc, Quaternion.identity).transform.SetParent(mapMover);
         backgroundWidth = backgroundMovement.repeatWidth;
         groundWidth = backgroundMovement.repeatWidth;
 
 
-        launchObjects[index++] = Instantiate(biomes[0].ground, (startingGroundLoc + Vector2.right * backgroundWidth), Quaternion.identity);
-        launchObjects[index++] = Instantiate(biomes[0].background, (startingBackgroundLoc + Vector2.right * backgroundWidth), Quaternion.identity);
+        Instantiate(biomes[0].ground, (startingGroundLoc + Vector2.right * backgroundWidth), Quaternion.identity).transform.SetParent(mapMover);
+        Instantiate(biomes[0].background, (startingBackgroundLoc + Vector2.right * backgroundWidth), Quaternion.identity).transform.SetParent(mapMover);
 
         
 
@@ -67,6 +71,7 @@ public class mapGenerator : MonoBehaviour
             launch = false;
         }
         mapMovement();
+        manageChunks();
     }
 
     public static void Launch(float launchSpeed, Vector2 launchDirection, float deceleration)
@@ -86,6 +91,27 @@ public class mapGenerator : MonoBehaviour
             deltaMovement = scrollSpeed * Time.deltaTime;
             mapMover.position = new Vector3(mapMover.position.x + deltaMovement, mapMover.position.y, mapMover.position.z);
         }
+
+    }
+
+    void manageChunks()
+    {
+        foreach(GameObject chunk in inactiveChunks)
+        {
+            if (chunk.transform.position.x <= transform.position.x - chunkSize)
+            {
+                chunk.SetActive(false);
+            }
+
+            else if (chunk.transform.position.x <= transform.position.x + chunkSize)
+            {
+                chunk.SetActive(true);
+            }
+        }
+
+
+
+
 
     }
 
