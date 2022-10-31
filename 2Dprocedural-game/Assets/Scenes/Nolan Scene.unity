@@ -583,6 +583,9 @@ MonoBehaviour:
   - name: Grass
     background: {fileID: 2266275315296250885, guid: d022d8eb0afe5cc428986c7b4d1d04ca, type: 3}
     ground: {fileID: 4314454227181856618, guid: 0bbf4ea20b4d04f46a893efa80808aab, type: 3}
+  mapLength: 1000
+  chunkSize: 100
+  chunkPrefab: {fileID: 5530703615445586863, guid: ab08599fb0e2e5149a6c2dee1eb8553d, type: 3}
   startingBackgroundLoc: {x: 0, y: 5000}
   startingGroundLoc: {x: 0, y: 0}
   scrollSpeedInitial: 500
