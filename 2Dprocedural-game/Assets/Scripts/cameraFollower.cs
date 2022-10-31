@@ -24,8 +24,11 @@ public class cameraFollower : MonoBehaviour
     void LateUpdate()
     {
         target = GameObject.FindWithTag("Player").transform;
-        if (target == null || !mapGenerator.launch)
+        if (target == null || (!mapGenerator.launch && target.gameObject.GetComponent<TarodevController.PlayerController>().Grounded))
+        {
             return;
+
+        }
 
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
