@@ -10,14 +10,12 @@ public class launchController : MonoBehaviour
     public playerState myState = playerState.Idle;
     public Transform launchPoint;
     public float pullDistance;
-    public float decelerationTime;
+    public float deceleration;
 
 
 
     [Header("scene attributes")]
     public new Camera camera;
-    public GameObject mapManager;
-    private mapGenerator mapGen;
 
 
    
@@ -30,7 +28,6 @@ public class launchController : MonoBehaviour
 
         pc = gameObject.GetComponent<TarodevController.PlayerController>();
         pc.enabled = false;
-        mapGen = mapManager.GetComponent<mapGenerator>();
     }
 
 
@@ -125,7 +122,7 @@ public class launchController : MonoBehaviour
 
         //rb.AddForce(new Vector2(0f, launchDirection.y) * launchSpeed, ForceMode2D.Impulse);
 
-        mapGen.Launch(launchSpeed,launchDirection,decelerationTime);
+        mapGenerator.Launch(launchSpeed,launchDirection,deceleration);
          
 
         pc.enabled = true;

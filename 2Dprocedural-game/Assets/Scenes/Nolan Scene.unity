@@ -530,9 +530,8 @@ MonoBehaviour:
   myState: 0
   launchPoint: {fileID: 67811980}
   pullDistance: 50
-  decelerationTime: 20
+  deceleration: 50
   camera: {fileID: 197012015}
-  mapManager: {fileID: 2016516830}
 --- !u!114 &1277149334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,58 +549,60 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _playerGrounded: 0
---- !u!1 &2016516830
-GameObject:
+--- !u!1001 &6098139209425562058
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2016516832}
-  - component: {fileID: 2016516831}
-  m_Layer: 0
-  m_Name: mapManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2016516831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016516830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14131f86b08d23a49a3f4a32f8239635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  biomes:
-  - name: Grass
-    background: {fileID: 2266275315296250885, guid: d022d8eb0afe5cc428986c7b4d1d04ca, type: 3}
-    ground: {fileID: 4314454227181856618, guid: 0bbf4ea20b4d04f46a893efa80808aab, type: 3}
-  mapLength: 1000
-  chunkSize: 100
-  chunkPrefab: {fileID: 5530703615445586863, guid: ab08599fb0e2e5149a6c2dee1eb8553d, type: 3}
-  startingBackgroundLoc: {x: 0, y: 5000}
-  startingGroundLoc: {x: 0, y: 0}
-  scrollSpeedInitial: 500
-  decel: 0.01
---- !u!4 &2016516832
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016516830}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6098139209556603668, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_Name
+      value: mapManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098139209556603690, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b13929d33af8ba54188e8804fd89210e, type: 3}
