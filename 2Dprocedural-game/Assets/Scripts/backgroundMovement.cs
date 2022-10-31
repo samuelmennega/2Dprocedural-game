@@ -6,11 +6,11 @@ public class backgroundMovement : MonoBehaviour
 {
   
 
-   [HideInInspector]
-    public float repeatWidth, repeatHeight, decel, scrollSpeed;
+  // [HideInInspector]
+    [SerializeField]
+    public static float repeatWidth, repeatHeight;
 
-    [HideInInspector]
-    public bool launch = false;
+
 
 
 
@@ -29,19 +29,16 @@ public class backgroundMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!launch)
+        if(!mapGenerator.launch)
         {
             return;
         }
 
 
-        if(scrollSpeed >= 0) {
 
-            launch = false;
-                }
-        scrollSpeed += decel * Time.deltaTime;
+        //scrollSpeed += decel * Time.deltaTime;
 
-        transform.position = new Vector2(transform.position.x + scrollSpeed * Time.deltaTime, transform.position.y);
+        transform.position = new Vector2(transform.position.x + mapGenerator.deltaMovement, transform.position.y);
 
         if(transform.position.x < -repeatWidth)
         {
@@ -51,18 +48,13 @@ public class backgroundMovement : MonoBehaviour
        
     }
 
-    public void Launch(float speed,float decelerationTime)
-    {
-        scrollSpeed = -speed;
-        decel = speed / decelerationTime;
-        launch = true;
-    }
+
 
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && scrollSpeed >= 0)
+        if(collision.tag == "Player" && mapGenerator.scrollSpeed >= 0)
         {
             collision.GetComponent<launchController>().myState = launchController.playerState.Landed;
         }
